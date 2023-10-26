@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My book shelf</title>
+    <style>
+        #root_container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #books {
+            width: 50%;
+            border-collapse: collapse;
+        }
+
+        table {
+            margin: 25px;
+        }
+
+        th {
+            text-align: left;
+        }
+
+        th, td {
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<div id="root_container">
+
+    <form method="post" th:action="@{/books/save}" th:object="${book}">
+        <table>
+            <tr>
+                <td>
+                    <input type="text" placeholder="author" th:field="*{author}">
+                    <p th:if="${#fields.hasErrors()}">ошибка, поле не должно быть пустым</p>
+                </td>
+                <td>
+                    <input type="text" placeholder="book_title" th:field="*{title}">
+                    <p th:if="${#fields.hasErrors()}">ошибка, поле не должно быть пустым</p>
+                </td>
+                <td>
+                    <input type="text" placeholder="size (pages)" th:field="*{size}">
+                    <p th:if="${#fields.hasErrors()}">field value must be digit and less than 4 signs</p>
+                </td>
+                <td>
+                    <input type="submit" value="save">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <form method="post" th:action="@{/books/remove}" th:object="${bookIdToRemove}">
+        <table>
+            <tr>
+                <td>
+                    <input type="text" placeholder="id number" th:field="*{id}">
+                </td>
+                <td>
+                    <input type="submit" value="remove">
+                </td>
+                <td th:if="${#fields.hasErrors()}">
+                    <p>Wrong id or not found</p>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <form method="post" th:action="@{/books/removeByRegexAuthor}">
+        <table>
+            <tr>
+                <td>
+                    <input type="text" placeholder="author name" th:name="author">
+                </td>
+                <td>
+                    <input type="submit" value="remove by regex author">
+                </td>
+            </tr>
+        </table>
+        <div th:if="${param.removeByRegexAuthor}" >
+            removeByRegexAuthor error
+        </div>
+    </form>
+    <form method="post" th:action="@{/books/removeByRegexTitle}">
+        <table>
+            <tr>
+                <td>
+                    <input type="text" placeholder="title" th:name="title">
+                </td>
+                <td>
+                    <input type="submit" value="remove by regex title">
+                </td>
+            </tr>
+        </table>
+        <div th:if="${param.removeByRegexTitle}" >
+            removeByRegexTitle error
+        </div>
+    </form>
+    <form method="post" th:action="@{/books/removeByRegexSize}">
+        <table>
+            <tr>
+                <td>
+                    <input type="text" placeholder="size" th:name="size">
+                </td>
+                <td>
+                    <input type="submit" value="remove by regex size">
+                </td>
+            </tr>
+        </table>
+        <div th:if="${param.removeByRegexSize}" >
+            removeByRegexSize error
+        </div>
+    </form>
+    <form method="post" th:action="@{/books/uploadFile}" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td>
+                    <input type="file" name="file"/>
+                </td>
+                <td>
+                    <input type="submit" value="Upload">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div th:if="${param.error}" >
+        Ошибка при загрузке файла.
+    </div>
+
+    <table id="books">
+        <tr>
+            <th>id</th>
+            <th>author</th>
+            <th>title</th>
+            <th>size</th>
+        </tr>
+        <tr th:each="book : ${bookList}">
+            <td th:text="${book.id}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.size}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
