@@ -1,0 +1,10 @@
+insert into genre (id, slug, name,parent_id) values (1, 'ebaf4505-f104-4abd-b859-e691e78f9db4', 'Treatment Set TS351142',-1);
+insert into genre (id, slug, name,parent_id) values (2, 'b4812f84-5238-4f17-9758-6183083f3de4', 'Bisacodyl Laxative',-1);
+insert into genre (id, slug, name,parent_id) values (3, 'c88f7be2-a082-4e38-8b6b-f629ff063a16', 'Tacrolimus',-1);
+insert into genre (id, slug, name,parent_id) values (4, '702f5096-e622-4c9d-9e51-9e03b34da868', 'VUMON',-1);
+insert into genre (id, slug, name,parent_id) values (5, 'd2d20d61-228a-49da-b9e1-2e20496ef49a', 'HAND SANITIZER',-1);
+insert into genre (id, slug, name,parent_id) values (6, 'f5228b6c-c3e9-4d69-a8f9-e44ccf779791', 'Polyethylene Glycol-3350',-1);
+insert into genre (id, slug, name,parent_id) values (7, '7111b298-cec2-438e-9df9-f7168202ab87', 'Isagel',-1);
+insert into genre (id, slug, name,parent_id) values (8, 'd2488c26-72f6-457d-a1e4-956b9a417583', 'ZinClear SPF 30 Tinted',-1);
+insert into genre (id, slug, name,parent_id) values (9, '12f046ca-6ac3-4102-92ff-98904ffafb38', 'Imiquimod',-1);
+insert into genre (id, slug, name,parent_id) values (10, '5bd1268b-968d-4c87-a67a-fa19a5dfe808', 'equate antacid',-1);
